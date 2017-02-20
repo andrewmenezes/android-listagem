@@ -10,15 +10,21 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        pesquisa geral
+        buildConfigField("String", "PESQUISA_GERAL_URL", "\"https://mystique-v1-submarino.b2w.io\"")
+        buildConfigField("String", "PESQUISA_GERAL_KEY_CONTENT", "\"mart%20tv%2032\"")
+        buildConfigField("String", "PESQUISA_GERAL_KEY_SORT_BY", "\"moreRelevant\"")
+        buildConfigField("String", "PESQUISA_GERAL_KEY_SRC", "\"neemu\"")
+
+//         pesquisa específica
+// "\"https://pdgnamedquery-v1-submarino.b2w.io/run-pdg/product-without-promotion/revision/8?id=122701411&offerLimit=1&opn=&storeId=nil&tags=prebf%2A%7CSUL_SUDESTE_CENTRO%7Clivros_prevenda\"")
+        buildConfigField("String", "PESQUISA_ESPECIFICA_URL", "\"https://pdgnamedquery-v1-submarino.b2w.io\"")
+        buildConfigField("Integer", "PESQUISA_ESPECIFICA_KEY_OFFER_LIMIT", "1")
+        buildConfigField("String", "PESQUISA_ESPECIFICA_STORE_ID", "\"nil\"")
+        buildConfigField("String", "PESQUISA_ESPECIFICA_TAGS", "\"prebf%2A%7CSUL_SUDESTE_CENTRO%7Clivros_prevenda\"")
     }
     buildTypes {
-        debug {
-            buildConfigField("String", "PESQUISA_GERAL_URL", "\"https://mystique-v1-submarino.b2w.io\"")
-            buildConfigField("String", "PESQUISA_GERAL_KEY_CONTENT", "\"mart%20tv%2032\"")
-            buildConfigField("String", "PESQUISA_GERAL_KEY_SORT_BY", "\"moreRelevant\"")
-            buildConfigField("String", "PESQUISA_GERAL_KEY_SRC", "\"neemu\"")
-        }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

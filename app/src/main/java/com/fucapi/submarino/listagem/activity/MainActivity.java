@@ -15,7 +15,6 @@ import com.fucapi.submarino.listagem.model.Produto;
 import com.fucapi.submarino.listagem.wrapper.PesquisaGeralWrapper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

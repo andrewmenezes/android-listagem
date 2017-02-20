@@ -1,5 +1,7 @@
 package com.fucapi.submarino.listagem.adapter;
 
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.fucapi.submarino.listagem.R;
+import com.fucapi.submarino.listagem.activity.ProdutoDetalhadoActivity;
 import com.fucapi.submarino.listagem.model.Imagem;
 import com.fucapi.submarino.listagem.model.Produto;
 
@@ -32,8 +35,16 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     @Override
     public void onBindViewHolder(ProdutoViewHolder viewHolder, int i) {
-        Produto produto = mList.get(i);
+        final Produto produto = mList.get(i);
         viewHolder.viewName.setText(produto.getNome());
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ProdutoDetalhadoActivity.class);
+                intent.putExtra(ProdutoDetalhadoActivity.PRODUCT_ID_KEY, produto.getId());
+                v.getContext().startActivity(intent);
+            }
+        });
 
         if(produto.getImagens()!=null && produto.getImagens().get(0)!=null) {
             Imagem imagem = produto.getImagens().get(0);
@@ -51,11 +62,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     protected static class ProdutoViewHolder extends RecyclerView.ViewHolder{
         protected TextView viewName;
         protected SimpleDraweeView viewPicture;
+        protected CardView cardView;
 
         public ProdutoViewHolder(View itemView) {
             super(itemView);
             viewName = (TextView) itemView.findViewById(R.id.tv_name);
             viewPicture = (SimpleDraweeView) itemView.findViewById(R.id.iv_picture);
+            cardView = (CardView) itemView.findViewById(R.id.cardview);
         }
     }
 }

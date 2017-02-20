@@ -2,4 +2,5 @@
     <string name="app_name">Listagem</string>
 
     <string name="search_error">Não foi possível completar a pesquisa.</string>
+    <string name="price">Preço:  </string>
 </resources>
