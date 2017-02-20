@@ -12,10 +12,17 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "PESQUISA_GERAL_URL", "\"https://mystique-v1-submarino.b2w.io\"")
+            buildConfigField("String", "PESQUISA_GERAL_KEY_CONTENT", "\"mart%20tv%2032\"")
+            buildConfigField("String", "PESQUISA_GERAL_KEY_SORT_BY", "\"moreRelevant\"")
+            buildConfigField("String", "PESQUISA_GERAL_KEY_SRC", "\"neemu\"")
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
+//            buildConfigField("String", "pesquisaGeralUrl", "https://mystique-v1-submarino.b2w.io/mystique/search?content=smart%20tv%2032&sortBy=moreRelevant&source=neemu")
         }
     }
 }

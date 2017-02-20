@@ -17,6 +17,12 @@ public class PesquisaGeralWrapper {
     @SerializedName("didYouMean")
     private String voceQuisDizer;
 
+    @SerializedName("sortBY")
+    private String ordenacao;
+
+    @SerializedName("timing")
+    private String tempo;
+
     @SerializedName("products")
     private List<Produto> produtos;
 
@@ -42,5 +48,21 @@ public class PesquisaGeralWrapper {
 
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    public String getOrdenacao() {
+        return ordenacao;
+    }
+
+    public void setOrdenacao(String ordenacao) {
+        this.ordenacao = ordenacao;
+    }
+
+    public String getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(String tempo) {
+        this.tempo = tempo;
     }
 }

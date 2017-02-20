@@ -2,6 +2,8 @@ package com.fucapi.submarino.listagem.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by berredo on 2/19/17.
  */
@@ -11,7 +13,7 @@ public class Produto {
     private Long id;
 
     @SerializedName("images")
-    private Imagem imagens;
+    private List<Imagem> imagens;
 
     @SerializedName("name")
     private String nome;
@@ -27,11 +29,12 @@ public class Produto {
         this.id = id;
     }
 
-    public Imagem getImagens() {
+
+    public List<Imagem> getImagens() {
         return imagens;
     }
 
-    public void setImagens(Imagem imagens) {
+    public void setImagens(List<Imagem> imagens) {
         this.imagens = imagens;
     }
 
