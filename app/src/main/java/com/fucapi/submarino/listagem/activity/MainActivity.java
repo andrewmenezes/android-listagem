@@ -6,12 +6,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.fucapi.submarino.listagem.App;
 import com.fucapi.submarino.listagem.BuildConfig;
 import com.fucapi.submarino.listagem.R;
+import com.fucapi.submarino.listagem.adapter.ProdutoAdapter;
 import com.fucapi.submarino.listagem.model.Produto;
 import com.fucapi.submarino.listagem.wrapper.PesquisaGeralWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,11 +23,15 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
+    private ProdutoAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        initialize fresco on application
+        Fresco.initialize(this);
 
         mRecycler = (RecyclerView) findViewById(R.id.recycler);
 
@@ -36,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
             mRecycler.setLayoutManager(mLayoutManager);
 
             // specify an adapter (see also next example)
-//            mAdapter = new MyAdapter(myDataset);
-//            mRecycler.setAdapter(mAdapter);
+
+            mAdapter = new ProdutoAdapter(new ArrayList<Produto>());
+            mRecycler.setAdapter(mAdapter);
         }
 
         getProdutos();
@@ -56,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<PesquisaGeralWrapper> call, Response<PesquisaGeralWrapper> response) {
                 PesquisaGeralWrapper pesquisaGeralWrapper = response.body();
 
+                if(pesquisaGeralWrapper!=null) {
+                    mAdapter = new ProdutoAdapter(pesquisaGeralWrapper.getProdutos());
+                    mRecycler.setAdapter(mAdapter);
+                }
             }
 
             @Override
